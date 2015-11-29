@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>reveal.js - The HTML Presentation Framework</title>
+  <title>Dev Front</title>
 
   <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
   <meta name="author" content="Hakim El Hattab">
@@ -40,25 +40,21 @@
   <!-- Any section element inside of this container is displayed as a slide -->
   <div class="slides">
     <section>
-      <h1>Backbone Marionette</h1>
+      <h1>Dev Front</h1>
 
-      <h3>appliqué au Hub Numérique de La Poste, ainsi que quelques généralités sur le dev front</h3>
     </section>
 
     <section>
-      <h2>Backbone/Marionette appliqué au Hub Numérique de La Poste</h2>
       <ul>
-        <li>Structure du projet</li>
+        <li>dashboard-web-mvc</li>
         <li>Modules / Components</li>
-        <li>Architecture globale (app/sub-app/modules/collection/model)</li>
-        <li>Layout / Région</li>
-        <li>Routing</li>
-        <li>Evènements</li>
-        <li>Navigation</li>
+        <li>Structure globale (app/sub-app/pages/modules/collection/model)</li>
+        <li>Sub app trigger-widget</li>
       </ul>
     </section>
 
     <section>
+      <h2>dashboard-web-mvc</h2>
       <h3>Répertoire src</h3>
       <ul style="font-size: 0.7em;">
         <li>_components
@@ -88,21 +84,83 @@
         </li>
         <li>json</li>
       </ul>
+    </section>
+
+
+    <section>
+      <h2>dashboard-web-mvc</h2>
+      <h3>Utilisation de Gulp</h3>
+      <ul>
+        <li>
+          <h4>Configuration</h4>
+          <ul>
+            <li><p>gulpfile.js</p></li>
+          </ul>
+        </li>
+        <li>
+          <h4>Commandes</h4>
+          <ul>
+            <li>Pour le développement : gulp <span style="font-size: 0.7em;">('nodemon','imagemin','copy','jade','sass','browserify','browserSync','watch')</span></li>
+            <li>Par Jenkins pour les serveurs : gulp build --production <span style="font-size: 0.7em;">('clean','icon','copy::font::din','imagemin','jade','sass','copy::font::icons','copy','browserify')</span></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>dashboard-web-mvc</h2>
+      <h3>Dépendances</h3>
+      <ul>
+        <li>Configuration dans package.json</li>
+        <li>pour l'éxecution du code
+          <pre><code>
+"dependencies": {
+  "backbone": "1.2.3",
+  "backbone.marionette": "2.4.4",
+  "d3": "3.5.9",
+  ...
+}
+          </code></pre>
+        </li>
+        <li>pour le dev
+        <pre><code>
+"devDependencies": {
+  "browserify": "~10.0.0",
+  "express": "^4.13.3",
+  "gulp-sass": "~2.0.1",
+  ...
+},
+        </code></pre></li>
+
+      </ul>
 
     </section>
 
     <section>
+      <h2>dashboard-web-mvc</h2>
+      <h3>Environnement mocké</h3>
+      <ul>
+        <li>Données => serveur express, dossier Json</li>
+        <li>I18N => mocki18n.js</li>
+        <li>import des lib utilitaires de dashboard-web</li>
+        <li>...</li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h2>Modules/Components</h2>
       <h3>Components</h3>
-      <ul id="fragments">
-        <li class="fragment">
+      <ul>
+        <li>
           Un component est un élément d'UI qui pourrait être utilisé dans une autre application.
           <ul>
             <li class="noBullet">Non fonctionnel en tant que tel.</li>
             <li class="noBullet">Peut être inclut dans un module ou directement dans une page.</li>
           </ul>
-          <ul id="fragments">
-            <li class="fragment noBullet"><img src="./img/tab.png" alt=""></li>
-            <li class="fragment noBullet"><img src="./img/ribon.png" alt=""></li>
+          <ul>
+            <li class="noBullet"><img src="./img/tab.png" alt=""></li>
+            <li class="noBullet"><img src="./img/ribon.png" alt=""></li>
           </ul>
         </li>
       </ul>
@@ -111,9 +169,10 @@
 
 
     <section>
+      <h2>Modules/Components</h2>
       <h3>Modules</h3>
-      <ul id="fragments">
-        <li class="fragment">
+      <ul>
+        <li>
           Un module est un élément fonctionnel spécifique au métier du dashboard et qui ne pourrait pas être utilisé
           dans une
           autre application.
@@ -121,24 +180,32 @@
             <li class="noBullet">Fonctionnel en tant que tel</li>
             <li class="noBullet">Inclut dans une page</li>
           </ul>
-          <ul id="fragments">
-            <li class="fragment noBullet"><img src="./img/synt-act.png" alt=""></li>
+          <ul>
+            <li class="noBullet"><img src="./img/synt-act.png" alt=""></li>
           </ul>
         </li>
         </li>
       </ul>
     </section>
 
+
     <section>
-      <h3>Architecture globale</h3>
+      <h2>Structure globale</h2>
       <ul>
         <li>
           App
           <ul>
-            <li>sub-app (+layout de sub-app)
+            <li>sub-app (+layout)</li>
+            <li>...</li>
+            <li>sub-app (+layout)
               <ul>
-                <li>page (+layout de page)
+                <li>page (+layout)</li>
+                <li>...</li>
+                <li>page (+layout)
                   <ul>
+                    <li>module</li>
+                    <li>component</li>
+                    <li>...</li>
                     <li>module
                       <ul>
                         <li>collection
@@ -156,7 +223,23 @@
     </section>
 
     <section>
+      <h2>Structure globale</h2>
+      <img src="./img/bmahnp.png" alt="">
+    </section>
+
+
+    <section>
+
+      <h2>Sub app trigger-widget</h2>
+
+      <img src="./img/Parcours_création_tuile_déclencheur.png" style="width:600px;" alt="">
+    </section>
+
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Instanciation de la sub app</h3>
+      <span>dans main.js</span>
       <pre><code data-trim contenteditable>
         var TriggerWidget = require('../_sub-apps/trigger-widget');
       </code></pre>
@@ -168,59 +251,75 @@
     </section>
 
     <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Layouts</h3>
-      <ul>
-        <li>Région</li>
-        <li>Layout de sub app</li>
-        <li>Layout de page</li>
+      <ul id="fragments">
+        <li class="fragment">1 LayoutView +  1 template hbs</li>
+        <li class="fragment">des régions</li>
+        <li class="fragment">1 layout de sub app</li>
+        <li class="fragment">des Layouts de page</li>
       </ul>
     </section>
 
     <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Layout de sub app</h3>
+
       <img src="./img/sub-app-layout.png" alt="">
     </section>
 
     <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Layout de sub app</h3>
       <pre><code>
         var TriggerWidgetLayout = require('./views/trigger-widget-layout-view');
-      </code></pre>
 
-      <pre><code>
+        ...
+
         this.layout = new TriggerWidgetLayout().render();
-      </code></pre>
 
-      <pre><code>
-        var page = new Page({
-          container : this.layout.getRegion('main'),
-          ...
-        });
+        ...
+
+        $(this.container).html(this.layout.$el).addClass('is-visible trigger-widget');
       </code></pre>
     </section>
 
     <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Layout de page</h3>
+      <p>Exemple de la page peripheralList</p>
       <img src="./img/page-layout.png" alt="">
     </section>
 
     <section>
-      <h3>Layout de page</h3>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Page</h3>
+      <h4>dans la sub app</h4>
       <pre><code>
-        var PageLayout = require('../views/tabbed-page-layout-view');
+        var PeripheralListPage = require('./pages/peripheral-list');
+        ...
+        var peripheralListPage = new PeripheralListPage({
+          container : this.layout.getRegion('main'),
+          ...
+        });
+        ...
       </code></pre>
 
+      <h4>dans la page</h4>
       <pre><code>
+        var PageLayout = require('../views/tabbed-page-layout-view');
+
         initialize: function(options) {
           this.container = options.container;
           this.layout = new PageLayout();
           this.container.show(this.layout);
-          ...
+        ...
         },
       </code></pre>
     </section>
 
     <section>
+      <h2>Sub app trigger-widget</h2>
       <h3>Construction de la page</h3>
 
       <pre><code>
@@ -235,62 +334,56 @@
     </section>
 
     <section>
-
+      <h2>Sub app trigger-widget</h2>
       <h3>Initialisation des données</h3>
 
+      <p>Les données sont initialisées depuis la page.</p>
+
       <pre><code>
-        var PeripheralListCollection = require('../../../_entities/dashboard/peripherals/peripheral-list-collection');
+  var PeripheralListCollection =
+    require('../../../_entities/dashboard/peripherals/peripheral-list-collection');
       </code></pre>
 
-
       <pre><code>
-        initData: function() {
-          this.peripheralListCollection = new PeripheralListCollection();
-        },
+  initData: function() {
+    this.peripheralListCollection = new PeripheralListCollection();
+  },
       </code></pre>
     </section>
 
     <section>
-
+      <h2>Sub app trigger-widget</h2>
       <h3>Initialisation des modules</h3>
 
-      <pre><code>
+      <p>Les modules initialisés et affichés dans les regions depuis la page.</p>
+      <div id="fragments">
+      <pre class=""><code>
+        var PeripheralList = require('../../../_modules/peripheral-list');
+        var Tabs = require('../../../_components/tabs');
         initModules: function() {
           this.initPeripheralList();
           this.initTabs();
         },
-      </code></pre>
-
-      <pre><code>
-
+        initPeripheralList: function() {
+          this.peripheralList = new PeripheralList({
+            collection: this.peripheralListCollection
+          });
+          this.layout.getRegion('tabbedMain').show(this.peripheralList.getView());
+        },        ...
         initTabs: function() {
           this.tab = new Tabs([
             {id : 0, "label": "Mes objets", "isActive": true},
             {id : 1, "label": "Autres actions", "isActive": false}
           ]);
-          ...
           this.layout.getRegion('tabbedTabs').show(this.tab.getView());
         },
-
       </code></pre>
-
-
-      <pre><code>
-        initPeripheralList: function() {
-          this.peripheralList = new PeripheralList({
-            collection: this.peripheralListCollection
-          });
-
-          ...
-          this.layout.getRegion('tabbedMain').show(this.peripheralList.getView());
-        },
-      </code></pre>
-
+      </div>
     </section>
 
 
     <section>
-
+      <h2>Sub app trigger-widget</h2>
       <h3>Fetch des données</h3>
 
       <pre><code>
@@ -301,7 +394,142 @@
 
     </section>
 
-    <!-- Example of nested vertical slides -->
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Données</h3>
+
+      <p>exemple de la liste de périphériques</p>
+      <p>==> peripheralListCollection</p>
+      <pre><code>
+        var Backbone = require('backbone');
+        var PeripheralListModel = require('./peripheral-list-model');
+
+        module.exports = Backbone.Collection.extend({
+          model: PeripheralListModel,
+          url: '/dashboard/peripherals?deviceType=triggers'
+        });
+      </code></pre>
+    </section>
+
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Routing</h3>
+      <p>_sub-apps/trigger-widget/router.js</p>
+      <pre><code>
+        module.exports = Marionette.AppRouter.extend({
+          appRoutes: {
+            ...
+            'trigger-widget-peripheral-list': 'peripheralList',
+            'trigger-widget-other-actions-sms-form': 'smsFormAction',
+            ...
+          }
+        });
+      </code></pre>
+      <p>_sub-apps/trigger-widget/index.js</p>
+      <pre><code>
+        // ROUTED PAGES ====================
+        // Display peripheral list
+        peripheralList: function() {
+          // init de la page, affiche layout de la sub app, init les modules communs
+          this.showPage(PeripheralListPage, {});
+        },
+      </code></pre>
+    </section>
+
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Evénements</h3>
+      <img src="./img/events.png" alt="">
+    </section>
+
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Navigation (via event)</h3>
+      <p>Exemple de la selection d'un périphérique</p>
+
+      <p>-- dans le module --</p>
+      <pre><code>
+        initialize: function(options) {
+          this.collection = options.collection;
+          this.listenTo(this.collection, 'change', this.navigateTo);
+        },
+
+        navigateTo: function(model) {
+          this.trigger('navigateTo', model)
+        },
+      </code></pre>
+
+    </section>
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Navigation (via event)</h3>
+
+      <p>Exemple de la selection d'un périphérique</p>
+      <p>-- dans la page --</p>
+
+      <pre><code>
+        this.listenTo(this.peripheralList, 'navigateTo', this.peripheralListNavigate);
+      </code></pre>
+
+      <pre><code>
+        peripheralListNavigate: function(model) {
+          this.parentChannel.trigger('navigate:actionList', model);
+        },
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Sub app trigger-widget</h2>
+      <h3>Navigation (via event)</h3>
+
+      <p>Exemple de la selection d'un périphérique</p>
+
+      <p>-- dans la sub app --</p>
+
+      <pre><code>
+        this.listenTo(this.channel, 'navigate:actionList', this.navigateToActionList);
+      </code></pre>
+
+      <pre><code>
+        navigateToActionList: function(model) {
+          this.actionListModel = model;
+          this.router.navigate('trigger-widget-action-list', { trigger: true});
+        },</code>
+      </pre>
+
+    </section>
+
+    <section>
+      <h2>A améliorer / mettre en place</h2>
+      <ul>
+        <li>Gestion du CSS</li>
+        <li>Lib utilitaires</li>
+        <li>Couche service entities</li>
+        <li>...</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Crédits</h3>
+      <ul>
+        <li>Logu</li>
+        <li>Yannick</li>
+        <li>Kevin</li>
+        <li>Lucien</li>
+        <li>Romain</li>
+      </ul>
+    </section>
+
+    <section style="text-align: left;">
+      <h1>THE END</h1>
+    </section>
+
+    <!--
     <section>
       <section>
         <h2>Vertical Slides</h2>
@@ -435,7 +663,6 @@
 
       <p>
         reveal.js comes with a few themes built in: <br>
-        <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
         <a href="#"
            onclick="document.getElementById('theme').setAttribute('href','bower_components/reveal.js/css/theme/black.css'); return false;">Black
           (default)</a> -
@@ -668,15 +895,8 @@
         <li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
       </ul>
     </section>
+-->
 
-    <section style="text-align: left;">
-      <h1>THE END</h1>
-
-      <p>
-        - <a href="http://slides.com">Try the online editor</a> <br>
-        - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-      </p>
-    </section>
 
   </div>
 
